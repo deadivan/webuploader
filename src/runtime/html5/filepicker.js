@@ -60,8 +60,8 @@ define([
                 owner.trigger( e.type );
             };
 
-            input.on( 'change', function( e ) {
-                var fn = arguments.callee,
+            input.on( 'change', function $onInputChange( e ) {
+                var fn = $onInputChange,
                     clone;
 
                 me.files = e.target.files;
