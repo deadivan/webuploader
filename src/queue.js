@@ -156,12 +156,22 @@ define([
          */
         removeFile: function( file ) {
             var me = this,
+                queue = [],
+                i = 0,
+                len = this._queue.length,
                 existing = this._map[ file.id ];
 
             if ( existing ) {
+                for( ; i < len; i++ ){
+                    if( file.id === this._queue[ i ].id ) continue;
+                    queue.push( this._queue[i] );                    
+                }
+
+                this._queue = queue;
                 delete this._map[ file.id ];
                 file.destroy();
                 this.stats.numofDeleted++;
+
             }
         },
 
